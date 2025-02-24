@@ -1,0 +1,11 @@
+.login-page{
+    padding: 10px;
+    text-align: center;
+    font-family: "M PLUS Rounded 1c", serif;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.login-page h1{
+    font-size: 45px;
+}

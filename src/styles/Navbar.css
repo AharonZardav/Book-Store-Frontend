@@ -38,7 +38,7 @@
     transform: scale(1.2);
 }
 
-.custom-link.active{
+.navbar-links .custom-link.active{
     color: rgba(255, 255, 255, 0.801);
     transform: scale(1.2);
 }
@@ -49,10 +49,6 @@
     width: 50rem;
     align-items: center;
     justify-content:center;
-    font-family: "M PLUS Rounded 1c", serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 30px;
 }
 
 .search-bar {

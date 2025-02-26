@@ -60,11 +60,11 @@ export const fetchFavoritesList = () => {
 }
 
 export const addToFavoritesList = (itemTitle) => {
-    return axios.post(`${API_URL}/favorite-list/add-item`, {itemTitle}, {headers: getAuthHeader()});
+    return axios.post(`${API_URL}/favorite-list/add-item`, {item_title: itemTitle}, {headers: getAuthHeader()});
 }
 
 export const removeFromFavoritesList = (itemTitle) => {
-    return axios.put(`${API_URL}/favorite-list/remove-item`, {itemTitle}, {headers: getAuthHeader()});
+    return axios.put(`${API_URL}/favorite-list/remove-item`, {item_title: itemTitle}, {headers: getAuthHeader()});
 }
 
 export const clearFavoritesList = () => {

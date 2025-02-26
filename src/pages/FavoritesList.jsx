@@ -1,8 +1,13 @@
-import React from 'react'
+import ItemsContainer from '../components/ItemsContainer'
+import '../styles/FavoritesList.css'
 
 const FavoritesList = () => {
+    
   return (
-    <div>FavoritesList</div>
+    <div className='favorites-list-page'>
+      <h1>רשימת מועדפים</h1>
+      <ItemsContainer page={"FavoritesList"}/>
+    </div>
   )
 }
 

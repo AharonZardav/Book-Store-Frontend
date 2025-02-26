@@ -35,7 +35,7 @@ function App() {
 
   useEffect(() => {
     getCurrentUserForContext();
-  }, []);
+  },[]);
 
   return (
     <UserContext.Provider value={{currentUser, updateCurrentUserContext, isRequestToGetCurrentUserDone}}>

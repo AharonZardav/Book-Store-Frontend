@@ -1,18 +1,18 @@
-.home-page{
+.favorites-list-page{
     text-align: center;
     font-family: "M PLUS Rounded 1c", serif;
     font-style: normal;
     font-weight: 600;
 }
 
-.home-page h1{
+.favorites-list-page h1{
     font-size: 40px;
     margin: 0;
     margin-top: 10px;
     padding: 0;
 }
 
-.home-page button{
+.favorites-list-page button{
     text-align: center;
     font-family: "M PLUS Rounded 1c", serif;
     font-style: normal;

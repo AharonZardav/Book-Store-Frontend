@@ -1,0 +1,89 @@
+.order-item-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.297);
+    margin-top: 7px;
+    padding: 10px;
+    margin: 0 20px 0 20px;
+    width: 1000px;
+    border-radius: 20px;
+}
+
+.orderItem-content-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.orderItem-text-container {
+    flex: 1;
+    text-align: end;
+    margin: 0 30px 0 0;
+}
+
+.orderItem-text-container h2{
+    margin: 0;
+}
+
+.orderItem-text-container h3{
+    font-size: 14px;
+    margin: 2px;
+}
+
+.add-item-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.add-item-container p{
+    margin: 5px;
+}
+
+.orderItem-buttons-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 40px;
+    background-color: white;
+    border-radius: 20px;
+    gap: 5px;
+    margin: 0;
+}
+
+.orderItem-buttons-container button{
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    font-family: "M PLUS Rounded 1c", serif;
+    font-weight: 600;
+}
+
+.orderItem-buttons-container button:hover{
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+.orderItem-buttons-container p{
+    margin: 0;
+    padding: 0;
+}
+
+.orderItem-image-container {
+    width: 100px;
+    height: 100px;
+}
+
+.orderItem-image{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.amount-in-order{
+    margin: 30px;
+}

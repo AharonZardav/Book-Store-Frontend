@@ -1,0 +1,23 @@
+.orders-page{
+    text-align: center;
+    text-align: center;
+    font-family: "M PLUS Rounded 1c", serif;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.open-order{
+    background-color: rgb(215, 255, 155);
+}
+
+.closed-order{
+    background-color: rgb(255, 134, 134);
+}
+
+.orders-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

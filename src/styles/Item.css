@@ -29,18 +29,29 @@
     object-fit: contain;
 }
 
-.text-container {
+.title-container {
     margin: 10px 0;
-    height: 100px;
+    padding-bottom: 0;
+    height: 40px;
 }
 
-.text-container h2 {
-    font-size: 18px;
-    margin: 5px 0;
+.title-container h2 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.text-container{
+    margin-bottom: 10px;
+}
+
+.text-container h3 {
+    font-size: 16px;
+    margin: 0;
+    padding: 2px;
 }
 
 .text-container p {
-    font-size: 14px;
+    font-size: 12px;
     color: gray;
     margin: 0;
 }

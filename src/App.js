@@ -7,11 +7,12 @@ import Registration from './pages/Registration';
 import Profile from './pages/Profile';
 import FavoritesList from './pages/FavoritesList';
 import OrderProcess from './pages/OrderProcess';
-import Orders from './pages/Orders';
+import Orders from './pages/OrdersPage';
 import NotFound from './pages/NotFound';
 import { useEffect, useState } from 'react';
 import { fetchCurrentUser } from './services/ApiService';
 import UserContext from './contexts/UserContext';
+import OrdersPage from './pages/OrdersPage';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -48,7 +49,7 @@ function App() {
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/favorites-list' element={<FavoritesList/>}/>
           <Route path='/order-process' element={<OrderProcess/>}/>
-          <Route path='/orders' element={<Orders/>}/>
+          <Route path='/orders' element={<OrdersPage/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>
       </Router>

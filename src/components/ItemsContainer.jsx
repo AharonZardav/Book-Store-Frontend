@@ -1,14 +1,17 @@
 import Item from './Item'
 import '../styles/ItemsContainer.css'
 import { fetchFavoritesList, fetchAllItems } from '../services/ApiService'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import UserContext from '../contexts/UserContext'
 
 
-const ItemsContainer = ({page}) => {    
+const ItemsContainer = ({page}) => {
+  const {currentUser, isRequestToGetCurrentUserDone} = useContext(UserContext);
   const [items, setAllItems] = useState([]);
   const [error, setError] = useState(null);
   const [favoriteItems, setFavoriteItems] = useState([]);
   const [favoriteItemsId, setFavoriteItemsId] = useState(new Set);
+  const [isRequestToGetFavoritesDone, setIsRequestToGetFavoritesDone] = useState(false);
 
 
   const getAllItems = async() => {
@@ -41,13 +44,6 @@ const ItemsContainer = ({page}) => {
     };
   }
 
-  useEffect(() => {
-    if(page==="Home"){
-      getAllItems();
-      getFavoriteItems();
-    }
-  }, [favoriteItemsId]);
-
   const getFavoriteItems = async() => {
     try {
       const {data} = await fetchFavoritesList();
@@ -77,31 +73,51 @@ const ItemsContainer = ({page}) => {
       }
       return;
     };
+    setIsRequestToGetFavoritesDone(true);
   }
 
   useEffect(() => {
-    if(page==="FavoritesList"){
+    if(page==="Home" && isRequestToGetCurrentUserDone && currentUser){
+      if(!isRequestToGetFavoritesDone){
+        getFavoriteItems();
+      }
+      if(isRequestToGetFavoritesDone){
+        getAllItems();
+      } 
+    }
+  }, [currentUser, isRequestToGetFavoritesDone]);
+
+  useEffect(() => {
+    if(page==="Home" && isRequestToGetCurrentUserDone && !currentUser){
+      getAllItems();
+    }
+  });
+
+  useEffect(() => {
+    if(page==="FavoritesList" && isRequestToGetCurrentUserDone && currentUser){
       getFavoriteItems();
     }
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     setError("");
-  }, [(!favoriteItems == null), (favoriteItems.length > 0)]);
+  }, [(favoriteItems != null), (favoriteItems.length > 0)]);
 
   return (
     <div className='items-container'>
-        {items && page==="Home" &&
-            items.map((item) =>{
-                return <Item className="item-card" imageUrl={item.image_path} amount={item.quantity} title={item.title} page={"Home"} isFavorite={favoriteItemsId.has(item.item_id)}/>
-            })
-        }
-        {favoriteItems && page==="FavoritesList" &&
-            favoriteItems.map((favoriteItem) =>{
-                return <Item className="item-card" imageUrl={favoriteItem.image_path} amount={favoriteItem.quantity} title={favoriteItem.title} page={"FavoritesList"} isFavorite={true}/>
-            })
-        }
-        {error && <p>{error}</p>}
+      {items && favoriteItemsId && page==="Home" &&
+          items.map((item) =>{
+              return <Item className="item-card" imageUrl={item.image_path} amount={item.quantity} title={item.title} price={item.price}
+                page={"Home"} isFavorite={favoriteItemsId.has(item.item_id)}/>
+          })
+      }
+      {favoriteItems && page==="FavoritesList" &&
+          favoriteItems.map((favoriteItem) =>{
+              return <Item className="item-card" imageUrl={favoriteItem.image_path} amount={favoriteItem.quantity} title={favoriteItem.title} price={favoriteItem.price}
+                page={"FavoritesList"} isFavorite={true}/>
+          })
+      }
+      {error && <p>{error}</p>}
     </div>
   )
 }

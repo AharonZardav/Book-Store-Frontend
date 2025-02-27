@@ -6,22 +6,19 @@ import UserContext from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { addToFavoritesList, removeFromFavoritesList } from '../services/ApiService'
 
-const Item = ({imageUrl, amount, title, isFavorite}) => {
+const Item = ({imageUrl, amount, title, isFavorite, price}) => {
   const {currentUser} = useContext(UserContext);
   const [isFavoriteItem, setIsFavoriteItem] = useState(null);
-  // const [addToFavoritesActive, setAddToFavoritesActive] = useState(null);
   const navigate = useNavigate();
 
   const handleClick = async() => {
     if(currentUser){
       if(!isFavoriteItem){
         // Add item to user's favorites
-        console.log("Add item to user's favorites");
         await addToFavoritesList(title);
       }
       if(isFavoriteItem){
         // Remove item from user's favorites
-        console.log("Remove item from user's favorites");
         await removeFromFavoritesList(title);
       }
       setIsFavoriteItem(!isFavoriteItem);
@@ -39,9 +36,12 @@ const Item = ({imageUrl, amount, title, isFavorite}) => {
         <div className='image-container'>
         <img src={`${imageUrl}`} className='image' alt='img'/>
         </div>
-        <div className='text-container'>
+        <div className='title-container'>
             <h2>{`${title}`}</h2>
-            <p>{`(נשארו ${amount} במלאי)`}</p>
+        </div>
+        <div className='text-container'>
+          <h3>{`מחיר: ${price} ש"ח`}</h3>
+          <p>{`(נשארו ${amount} במלאי)`}</p>
         </div>
       <div className='buttons-container'>
         <span onClick={handleClick}>

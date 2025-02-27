@@ -1,0 +1,55 @@
+.order-card{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 80%;
+    min-height: 350px;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.open-order{
+    background-color: rgba(153, 255, 1, 0.371);
+}
+
+.close-order{
+    background-color: rgba(255, 0, 0, 0.196);
+}
+
+.order-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.order-title h2{
+    margin: 10px;
+    font-size: 30px;
+}
+
+.order-buttons{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 20px;
+}
+
+.order-buttons button{
+    padding: 0 30px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.348);
+    font-size: 16px;
+    font-family: "M PLUS Rounded 1c", serif;
+    font-weight: 600;
+    min-height: 40px;
+    max-height: 60px;
+}
+
+.order-buttons button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}

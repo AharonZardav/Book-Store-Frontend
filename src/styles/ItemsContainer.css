@@ -18,16 +18,21 @@
     text-align: center;
     transition: transform 0.3s ease;
     max-width: calc(20% - 20px);
+    min-width: 200px;
+    line-height: 20px;
 }
 
 .item-card:hover {
     transform: scale(1.05);
 }
 
+
 @media (max-width: 1024px) {
     .item-card {
         flex: 1 1 calc(25% - 50px);
         max-width: calc(25% - 20px);
+        min-width: 200px;
+        line-height: 20px;
     }
 }
 
@@ -35,6 +40,8 @@
     .item-card {
         flex: 1 1 calc(33.33% - 20px);
         max-width: calc(33.33% - 20px);
+        min-width: 200px;
+        line-height: 20px;
     }
 }
 

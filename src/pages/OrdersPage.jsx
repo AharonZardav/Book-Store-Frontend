@@ -12,7 +12,6 @@ const OrdersPage = () => {
   const [openOrder, setOpenOrder] = useState(null);
   const [closedOrders, setClosedOrders] = useState([]);
 
-
   const getOrders = async() => {
     try{
       const {data} = await fetchAllOrders();
@@ -38,22 +37,14 @@ const OrdersPage = () => {
       }
       {isRequestToGetCurrentUserDone && currentUser &&
         <div className='orders-container'>
-          {/* {<Accordion>
-            <AccordionSummary>
-              <h1>order</h1>
-            </AccordionSummary>
-            <AccordionDetails>
+          {openOrder && openOrder.items && 
             <Order order={openOrder}/>
-            </AccordionDetails>
-          </Accordion>} */}
-            {openOrder && openOrder.items && 
-              <Order order={openOrder}/>
-            }
-            {closedOrders &&
-              closedOrders.reverse().map((closedOrder) =>{
-                return <Order order={closedOrder}/>
-              })
-            }
+          }
+          {closedOrders &&
+            closedOrders.reverse().map((closedOrder) =>{
+              return <Order order={closedOrder}/>
+            })
+          }
         </div>
       }
       {isRequestToGetCurrentUserDone && !currentUser &&

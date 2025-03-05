@@ -83,7 +83,7 @@ function App() {
           <Route path='/register' element={<Registration/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/favorites-list' element={<FavoritesList/>}/>
-          <Route path='/order-process' element={<OrderProcess/>}/>
+          {/* <Route path='/order-process' element={<OrderProcess/>}/> */}
           <Route path='/orders' element={<OrdersPage/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>

@@ -29,7 +29,7 @@ const Navbar = () => {
       {currentUser && 
         <div className='navbar-links'>
           <button onClick={logout} className='btn'>התנתק</button>
-          <CustomLink to={'/order-process'} children={"עגלת קניות"}/>
+          {/* <CustomLink to={'/order-process'} children={"עגלת קניות"}/> */}
           <CustomLink to={'/orders'} children={"הזמנות"}/>
           <CustomLink to={'/favorites-list'} children={'מועדפים'}/>
           <CustomLink to={'/profile'} children={'פרופיל'}/>

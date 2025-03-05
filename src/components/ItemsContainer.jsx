@@ -19,7 +19,7 @@ const ItemsContainer = ({page}) => {
     try {
       getAllItemsForContext()
     } catch (err) {
-      if(err.status === 404){
+      if(err.status === 404 || err.status === 400){        
         setError("אין פריטים כרגע לצערנו");
         setTimeout(() => {
           setError("");
@@ -33,7 +33,7 @@ const ItemsContainer = ({page}) => {
         }, 3000)
         return;
       }
-      if(err.code === 'ERR_NETWORK'){
+      if(err.code === 'ERR_NETWORK'){        
         setError("הבאת הפריטים נכשלה: שגיאת רשת");
         setTimeout(() => {
           setError("");
@@ -123,7 +123,8 @@ const ItemsContainer = ({page}) => {
                 page={"FavoritesList"} isFavorite={true}/>
           })
       }
-      {error && <p style={{margin: "0"}}>{error}</p>}
+      {favoriteItems.length == 0 && <p style={{margin: "0"}}>לא נמצאו פריטים</p>}
+      {items.filter(item => item.title.includes(searchWord)).length === 0 && <p style={{margin: "0"}}>לא נמצאו פריטים</p>}
     </div>
   )
 }

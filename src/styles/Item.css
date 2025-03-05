@@ -82,10 +82,24 @@
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.4s ease;
     font-size: 14px;
 }
 
 .buttons-container .button:hover {
     background: #3e9143;
+}
+
+.buttons-container .button:active {
+    transform: scale(0.9);
+}
+
+.buttons-container .disabled {
+    background-color: gray;
+}
+
+.buttons-container .disabled:hover {
+    background-color: gray;
+    transform: none;
+    cursor: not-allowed;
 }

@@ -6,6 +6,11 @@
     font-weight: 600;
 }
 
+.orders-page h1 {
+    font-size: 40px;
+    margin: 10px;
+}
+
 .open-order{
     background-color: rgb(215, 255, 155);
 }

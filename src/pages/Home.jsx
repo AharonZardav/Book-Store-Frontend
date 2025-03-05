@@ -1,12 +1,11 @@
 import '../styles/Home.css'
 import ItemsContainer from '../components/ItemsContainer'
 
-const Home = () => {
-    
+const Home = () => {  
   return (
     <div className='home-page'>
       <h1>דף הבית</h1>
-      <ItemsContainer page={"Home"}/>
+       <ItemsContainer page={"Home"}/>
     </div>
   )
 }

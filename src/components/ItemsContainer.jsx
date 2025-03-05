@@ -1,23 +1,23 @@
 import Item from './Item'
 import '../styles/ItemsContainer.css'
-import { fetchFavoritesList, fetchAllItems } from '../services/ApiService'
+import { fetchFavoritesList } from '../services/ApiService'
 import React, { useContext, useEffect, useState } from 'react'
 import UserContext from '../contexts/UserContext'
-
+import ItemsContext from '../contexts/ItemsContext'
+import SearchBarContext from '../contexts/SearchBarContext'
 
 const ItemsContainer = ({page}) => {
   const {currentUser, isRequestToGetCurrentUserDone} = useContext(UserContext);
-  const [items, setAllItems] = useState([]);
+  const {items, getAllItemsForContext} = useContext(ItemsContext);
+  const {isSearchBarActive, searchWord} = useContext(SearchBarContext);
   const [error, setError] = useState(null);
   const [favoriteItems, setFavoriteItems] = useState([]);
   const [favoriteItemsId, setFavoriteItemsId] = useState(new Set);
   const [isRequestToGetFavoritesDone, setIsRequestToGetFavoritesDone] = useState(false);
-
-
+  
   const getAllItems = async() => {
     try {
-      const {data} = await fetchAllItems();
-      setAllItems(data);
+      getAllItemsForContext()
     } catch (err) {
       if(err.status === 404){
         setError("אין פריטים כרגע לצערנו");
@@ -91,7 +91,7 @@ const ItemsContainer = ({page}) => {
     if(page==="Home" && isRequestToGetCurrentUserDone && !currentUser){
       getAllItems();
     }
-  });
+  }, [currentUser, isRequestToGetFavoritesDone, page]);
 
   useEffect(() => {
     if(page==="FavoritesList" && isRequestToGetCurrentUserDone && currentUser){
@@ -105,11 +105,17 @@ const ItemsContainer = ({page}) => {
 
   return (
     <div className='items-container'>
-      {items && favoriteItemsId && page==="Home" &&
+      {items && favoriteItemsId && page==="Home" && !isSearchBarActive &&
           items.map((item) =>{
               return <Item className="item-card" imageUrl={item.image_path} amount={item.quantity} title={item.title} price={item.price}
                 page={"Home"} isFavorite={favoriteItemsId.has(item.item_id)}/>
           })
+      }
+      {items && favoriteItemsId && page==="Home" && isSearchBarActive &&
+          items.filter(item => item.title.includes(searchWord)).map((item) => (
+            <Item key={item.item_id} className="item-card" imageUrl={item.image_path} amount={item.quantity} title={item.title} price={item.price} page={"Home"} isFavorite={favoriteItemsId.has(item.item_id)}/>
+            )
+          )
       }
       {favoriteItems && page==="FavoritesList" &&
           favoriteItems.map((favoriteItem) =>{
@@ -117,7 +123,7 @@ const ItemsContainer = ({page}) => {
                 page={"FavoritesList"} isFavorite={true}/>
           })
       }
-      {error && <p>{error}</p>}
+      {error && <p style={{margin: "0"}}>{error}</p>}
     </div>
   )
 }

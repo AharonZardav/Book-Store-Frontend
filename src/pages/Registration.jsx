@@ -1,8 +1,13 @@
 import React from 'react'
+import '../styles/Registration.css'
+import RegistrationForm from '../components/RegistrationForm'
 
 const Registration = () => {
   return (
-    <div>Registration</div>
+    <div className='registration-page'>
+      <h1>הרשמה</h1>
+      <RegistrationForm/>
+    </div>
   )
 }
 

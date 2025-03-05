@@ -84,7 +84,7 @@ const LoginForm = () => {
                         cursor: "pointer"
                     }}
                 >
-                    {showPassword ? <VisibilityIcon style={{fontSize: "medium"}}/> : <VisibilityOffIcon style={{fontSize: "medium"}}/>}
+                {showPassword ? <VisibilityIcon style={{fontSize: "medium"}}/> : <VisibilityOffIcon style={{fontSize: "medium"}}/>}
                 </span>
             </div>
             {error && <p className='error-text'>{error}</p>}

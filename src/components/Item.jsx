@@ -4,21 +4,19 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import UserContext from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
-import { addToFavoritesList, removeFromFavoritesList } from '../services/ApiService'
+import { addToFavoritesList, removeFromFavoritesList, addItemToOrder } from '../services/ApiService'
 
 const Item = ({imageUrl, amount, title, isFavorite, price}) => {
-  const {currentUser} = useContext(UserContext);
+  const {currentUser, isRequestToGetCurrentUserDone} = useContext(UserContext);
   const [isFavoriteItem, setIsFavoriteItem] = useState(null);
   const navigate = useNavigate();
-
-  const handleClick = async() => {
+  
+  const handleFavoriteClick = async() => {
     if(currentUser){
       if(!isFavoriteItem){
-        // Add item to user's favorites
         await addToFavoritesList(title);
       }
       if(isFavoriteItem){
-        // Remove item from user's favorites
         await removeFromFavoritesList(title);
       }
       setIsFavoriteItem(!isFavoriteItem);
@@ -27,9 +25,24 @@ const Item = ({imageUrl, amount, title, isFavorite, price}) => {
     }
   }
 
+  const handleAddItemClick = async() => {
+    if(currentUser){
+      try{
+        await addItemToOrder({username:currentUser.username, title, quantity:1, shipping_address:currentUser.address});
+      } catch(err){
+        console.log(err);
+        return;
+      }
+    } else{
+      navigate('/login');
+    }
+  }
+
   useEffect(() => {
-    setIsFavoriteItem(isFavorite);
-  },[]);
+    if(isRequestToGetCurrentUserDone && currentUser){
+      setIsFavoriteItem(isFavorite);
+    }
+  },[currentUser, isRequestToGetCurrentUserDone, isFavorite]);
   
   return (
     <div className='item-card'>
@@ -44,10 +57,11 @@ const Item = ({imageUrl, amount, title, isFavorite, price}) => {
           <p>{`(נשארו ${amount} במלאי)`}</p>
         </div>
       <div className='buttons-container'>
-        <span onClick={handleClick}>
+        <span onClick={handleFavoriteClick}>
           {!isFavoriteItem ? <FavoriteBorderIcon className='heart-icon'/> : <FavoriteIcon className='filled-heart-icon'/>}
         </span>
-        <button className='button'>הוסף לעגלה</button>
+        {amount !== 0 && <button className='button' onClick={handleAddItemClick}>הוסף לעגלה</button>}
+        {amount === 0 && <button className='button disabled'>אזל המלאי</button>}
       </div>
     </div>
   )

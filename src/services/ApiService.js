@@ -14,11 +14,9 @@ const getAuthHeader = () => {
 }
 
 //remove token from local storage
-
 export const removeAuthHeader = (key) => {
     localStorage.removeItem(key);
 };
-
 
 //user requests
 export const register = (user) => {
@@ -74,15 +72,15 @@ export const clearFavoritesList = () => {
 
 //order requests
 export const addItemToOrder = (order) => {
-    return axios.post(`${API_URL}/orders/add-item`, {order}, {headers: getAuthHeader()});
+    return axios.post(`${API_URL}/orders/add-item`, order, {headers: getAuthHeader()});
 }
 
 export const removeItemFromOrder = (item) => {
-    return axios.put(`${API_URL}/orders/remove-item`, {item}, {headers: getAuthHeader()});
+    return axios.put(`${API_URL}/orders/remove-item`, item, {headers: getAuthHeader()});
 }
 
 export const placeOrder = () => {
-    return axios.post(`${API_URL}/orders/payment`, {headers: getAuthHeader()});
+    return axios.post(`${API_URL}/orders/payment`, {}, {headers: getAuthHeader()});
 }
 
 export const fetchAllOrders = () => {
